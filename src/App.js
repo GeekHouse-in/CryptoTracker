@@ -26,6 +26,7 @@ function App() {
       <div className={classes.App} >
       <Header />  
         <Routes>
+         
           <Route exact path='/' element={<HomePage/>} />
           <Route exact path='/coins/:id' element={<CoinPage />} />
        
