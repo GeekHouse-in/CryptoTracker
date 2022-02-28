@@ -10,7 +10,7 @@ import { CryptoState } from '../CryptoContext'
 
 const CoinTable = () => {
     const[coins,setCoins] = useState([]);
-    const[search,setSearch] = useState();
+    const[search,setSearch] = useState('');
     const[loading,setLoading] = useState(false);
     const {currency, symbol} = CryptoState();
     const[page,setPage] = useState(1);
@@ -49,13 +49,12 @@ const CoinTable = () => {
     })
     
     const handleSearch = () =>{
-        console.log(coins)
+        console.log(search)
         return coins?.filter((coin)=>(
             coin.name.toLowerCase().includes(search) || 
             coin.symbol.toLowerCase().includes(search)
         ))}
-   // console.log(coins);
-  console.log(handleSearch())
+
   return (
     <ThemeProvider theme = {darkTheme}>
     <Container style={{textAlign : "center"}}>
@@ -106,7 +105,7 @@ const CoinTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {coins.slice((page-1)*10,(page-1)*10 + 10).map((row)=>{
+                    {handleSearch().slice((page-1)*10,(page-1)*10 + 10).map((row)=>{
                  
                         const profit = row.price_change_percentage_24h >=0 ;
                         return(
@@ -184,7 +183,7 @@ const CoinTable = () => {
             justifyContent:"center"
         }}
         
-        count ={(coins?.length / 10).toFixed(0)}
+        count ={(handleSearch()?.length / 10).toFixed(0)}
         onChange={(_,value)=>{
             setPage(value);
             window.scroll(0,450);

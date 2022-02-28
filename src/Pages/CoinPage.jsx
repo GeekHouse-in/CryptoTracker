@@ -2,6 +2,7 @@ import { LinearProgress, makeStyles, Typography } from '@material-ui/core'
 import axios from 'axios'
 import React,{useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
+import CoinChart from '../Components/CoinChart'
 import { SingleCoin } from '../Config/api'
 import { CryptoState } from '../CryptoContext'
 
@@ -64,7 +65,7 @@ const CoinPage = () => {
   if(!coin)return <LinearProgress style={{backgroundColor :"yellow"}} />
   return (
     <div className={classes.container}>
-      <div className={classes.sidebar}>
+    <div className={classes.sidebar}>
         
         <img src={coin?.image.large} alt={coin?.name} height="200" style={{marginBottom : 20}} />
         
@@ -110,9 +111,9 @@ const CoinPage = () => {
           </span>
         </div>
       </div>
-      <div>
-        Chart
-      </div>
+      
+        <CoinChart coin = {coin} />
+      
     </div>
   )
 }
